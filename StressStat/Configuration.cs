@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace StressStat
 {
@@ -19,23 +18,23 @@ namespace StressStat
         /// <summary>
         /// Default configuration
         /// </summary>
-        public Configuration()
+        public static Configuration Default = new Configuration()
         {
-            ShowPeopleSelector = true;
-            HighValueLabel = "Высокий";
-            LowValueLabel = "Низкий";
-            Label = "Оцените уровень своей напряженности";
+            ShowPeopleSelector = true,
+            HighValueLabel = "Высокий",
+            LowValueLabel = "Низкий",
+            Label = "Оцените уровень своей напряженности",
             People = new Dictionary<string, string>()
             {
                 {"test1", "Иванов Иван Иванович"},
                 {"test2", "test value 2"},
                 {"test3", "test value 3"},
-            };
-            DefaultId = People.First().Key;
-            AfterHours = 0;
-            AfterMinutes = 1;
-            LogPath = "";
-            StartAfterMinutes = 0;
-        }
+            },
+            DefaultId = "test1",
+            AfterHours = 0,
+            AfterMinutes = 1,
+            LogPath = "",
+            StartAfterMinutes = 0
+        };
     }
 }

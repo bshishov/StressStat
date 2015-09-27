@@ -35,7 +35,7 @@ namespace StressStat
 
             if (_configuration == null)
             {
-                _configuration = new Configuration();
+                _configuration = Configuration.Default;
                 File.WriteAllText(ConfigurationFile, JsonConvert.SerializeObject(_configuration, new JsonSerializerSettings() { Formatting = Formatting.Indented }));
             }
 
