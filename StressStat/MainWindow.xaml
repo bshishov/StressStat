@@ -5,7 +5,7 @@
         Title="MainWindow" Height="350" Width="525"
         ShowInTaskbar="False" Visibility="Hidden">
     <Grid>
-        <tb:TaskbarIcon x:Name="TaskbarIcon" ToolTipText="Stress Tracker">
+        <tb:TaskbarIcon x:Name="TaskbarIcon" ToolTipText="Stress Tracker" IconSource="Resources/icon.ico">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>                
                     <MenuItem Header="Exit" Click="OnExitClicked"/>

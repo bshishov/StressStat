@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace StressStat
 {
     public class Configuration
     {
-        public readonly bool ShowPeopleSelector;
-        public readonly Dictionary<string, string> People;
-        public readonly string DefaultId;
-        public readonly int AfterHours;
-        public readonly int AfterMinutes;
-        public readonly string LogPath;
+        public string Label;
+        public string LowValueLabel;
+        public string HighValueLabel;
+        public bool ShowPeopleSelector;
+        public int AfterHours;
+        public int AfterMinutes;
+        public string LogPath;
+        public int StartAfterMinutes;
+        public string DefaultId;
+        public Dictionary<string, string> People;
 
         /// <summary>
         /// Default configuration
@@ -19,9 +22,12 @@ namespace StressStat
         public Configuration()
         {
             ShowPeopleSelector = true;
+            HighValueLabel = "Высокий";
+            LowValueLabel = "Низкий";
+            Label = "Оцените уровень своей напряженности";
             People = new Dictionary<string, string>()
             {
-                {"test1", "test value 1"},
+                {"test1", "Иванов Иван Иванович"},
                 {"test2", "test value 2"},
                 {"test3", "test value 3"},
             };
@@ -29,6 +35,7 @@ namespace StressStat
             AfterHours = 0;
             AfterMinutes = 1;
             LogPath = "";
+            StartAfterMinutes = 0;
         }
     }
 }

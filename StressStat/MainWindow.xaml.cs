@@ -13,7 +13,7 @@ namespace StressStat
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static string ConfigurationFile = "configurations.json";
+        private const string ConfigurationFile = "config.json";
         private readonly Configuration _configuration;
         private readonly Timer _timer;
 
@@ -25,7 +25,7 @@ namespace StressStat
             {
                 try
                 {
-                    _configuration =JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(ConfigurationFile));
+                    _configuration = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(ConfigurationFile));
                 }
                 catch (Exception)
                 {
@@ -36,13 +36,13 @@ namespace StressStat
             if (_configuration == null)
             {
                 _configuration = new Configuration();
-                File.WriteAllText(ConfigurationFile, JsonConvert.SerializeObject(_configuration));
+                File.WriteAllText(ConfigurationFile, JsonConvert.SerializeObject(_configuration, new JsonSerializerSettings() { Formatting = Formatting.Indented }));
             }
 
             DataContext = this;
 
             _timer = new Timer(ShowBalloon);
-            _timer.Change(TimeSpan.Zero,
+            _timer.Change(TimeSpan.FromMinutes(_configuration.StartAfterMinutes),
                 TimeSpan.FromHours(_configuration.AfterHours).Add(TimeSpan.FromMinutes(_configuration.AfterMinutes)));
         }
 
@@ -56,6 +56,7 @@ namespace StressStat
         {
             if (_timer != null)
                 _timer.Dispose();
+            TaskbarIcon.Dispose();
             this.Close();
         }
     }
